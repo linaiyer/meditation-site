@@ -1,3 +1,4 @@
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -23,37 +24,160 @@ body {
 .content-wrapper {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 32px;
 }
 
+/* Location Banner */
+.location-banner {
+    background: linear-gradient(90deg, #4299e1, #2c5282);
+    color: white;
+    padding: 12px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.banner-close {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
 .hero {
     background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
-    text-align: center;
-    padding: 80px 20px;
-    color: #2c5282;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.hero h1 {
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.particle-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(66, 153, 225, 0.1) 2px, transparent 2px);
+    background-size: 50px 50px;
+    animation: particles 20s linear infinite;
+}
+
+@keyframes particles {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-50px) translateX(25px); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.hero-text h1 {
     font-size: 3.5rem;
     font-weight: 300;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    color: #2c5282;
     font-family: 'Avenir', sans-serif;
+    line-height: 1.1;
 }
 
 .hero-subtitle {
     font-size: 1.3rem;
-    font-weight: 300;
-    opacity: 0.8;
-    max-width: 600px;
-    margin: 0 auto;
+    font-weight: 400;
+    margin-bottom: 32px;
+    color: #4a5568;
+    line-height: 1.4;
 }
 
+.cta-primary {
+    background: linear-gradient(135deg, #4299e1 0%, #2c5282 100%);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
+}
+
+.cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(66, 153, 225, 0.4);
+}
+
+.cta-secondary {
+    background: transparent;
+    color: #4299e1;
+    border: 2px solid #4299e1;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 16px;
+}
+
+.cta-secondary:hover {
+    background: #4299e1;
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Video Container */
+.hero-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 315px;
+    border: none;
+    border-radius: 12px;
+}
+
+/* Main content sections */
 main {
     flex: 1;
 }
 
 section {
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 section:nth-child(even) {
@@ -64,7 +188,7 @@ h2 {
     font-size: 2.5rem;
     font-weight: 300;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
     color: #2c5282;
     font-family: 'Avenir', sans-serif;
 }
@@ -72,33 +196,27 @@ h2 {
 h3 {
     font-size: 1.4rem;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     color: #2c5282;
 }
 
-.intro-text {
-    font-size: 1.2rem;
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto;
-    color: #4a5568;
-    line-height: 1.8;
-}
 
+/* Benefits Grid with Flip Cards */
 .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
 }
 
 .benefit-card {
     background: white;
-    padding: 30px;
-    border-radius: 8px;
-    text-align: center;
+    border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    height: 300px;
+    perspective: 1000px;
+    position: relative;
 }
 
 .benefit-card:hover {
@@ -106,38 +224,194 @@ h3 {
     box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 
-.benefit-card p {
-    color: #718096;
-    line-height: 1.6;
+.benefit-card:hover .card-front {
+    transform: rotateY(180deg);
 }
 
+.benefit-card:hover .card-back {
+    transform: rotateY(0deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.6s ease;
+}
+
+.card-back {
+    background: #4299e1;
+    color: white;
+    transform: rotateY(180deg);
+    justify-content: center;
+}
+
+.benefit-icon {
+    margin-bottom: 24px;
+}
+
+.benefit-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.benefit-card li {
+    color: #718096;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 16px;
+}
+
+.benefit-card li::before {
+    content: "•";
+    color: #4299e1;
+    position: absolute;
+    left: 0;
+}
+
+.card-back h4 {
+    color: white;
+    margin-bottom: 16px;
+    font-size: 1.2rem;
+}
+
+.card-back p {
+    color: white;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.study-link-back {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.study-link-back:hover {
+    background: white;
+    color: #4299e1;
+}
+
+.statistic {
+    text-align: left;
+}
+
+.stat-highlight {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid white;
+}
+
+.study-details {
+    margin-top: 16px;
+}
+
+.study-details p {
+    margin-bottom: 8px;
+}
+
+/* Heartfulness Section */
 .heartfulness-section {
     background: linear-gradient(135deg, #e8f2ff 0%, #f0f8ff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.heartfulness-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+}
+
+.heartbeat-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #4299e1;
+    transform: translateY(-50%);
+}
+
+.heartbeat-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -10px;
+    width: 100px;
+    height: 22px;
+    background: #4299e1;
+    clip-path: polygon(0% 50%, 20% 0%, 30% 50%, 40% 100%, 50% 50%, 60% 0%, 70% 50%, 80% 100%, 90% 50%, 100% 50%);
+    animation: heartbeat 3s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: translateX(-100px); }
+    50% { transform: translateX(calc(100vw + 100px)); }
 }
 
 .heartfulness-content {
-    max-width: 800px;
+    position: relative;
+    z-index: 2;
+}
+
+
+.heartfulness-description {
+    text-align: center;
+    max-width: 600px;
     margin: 0 auto;
 }
 
-.heartfulness-quote {
-    font-size: 1.3rem;
-    font-style: italic;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #2c5282;
-    line-height: 1.8;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 12px;
-    border-left: 4px solid #4299e1;
+.heartfulness-description p {
+    font-size: 1.2rem;
+    color: #4a5568;
+    margin-bottom: 24px;
 }
 
-.heartfulness-description {
+.heartfulness-benefits {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 32px;
+}
+
+.heartfulness-benefits li {
     font-size: 1.1rem;
-    text-align: center;
     color: #4a5568;
-    line-height: 1.7;
+    margin-bottom: 12px;
+    text-align: left;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heartfulness-ctas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
 }
 
 .heartfulness-link {
@@ -152,6 +426,7 @@ h3 {
     border-bottom-color: #4299e1;
 }
 
+/* Explore Section */
 .explore-content {
     display: grid;
     gap: 30px;
@@ -187,10 +462,7 @@ h3 {
     border-bottom-color: #4299e1;
 }
 
-.getting-started {
-    background: #fafbfc;
-}
-
+/* Getting Started */
 .steps-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -230,23 +502,175 @@ h3 {
     line-height: 1.6;
 }
 
+/* Social Proof Section */
+.social-proof {
+    background: #f7fafc;
+    text-align: center;
+}
+
+.realtime-counter {
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 48px;
+    padding: 16px 24px;
+    background: white;
+    border-radius: 25px;
+    display: inline-block;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+#meditation-counter {
+    font-weight: 700;
+    color: #4299e1;
+}
+
+
+/* Footer */
 footer {
     background: #2c5282;
     color: white;
     text-align: center;
-    padding: 40px 0;
+    padding: 48px 0;
 }
 
 footer p {
     opacity: 0.9;
+    margin-bottom: 16px;
 }
 
+.citations {
+    opacity: 0.7;
+}
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 32px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #718096;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #2c5282;
+}
+
+.citations-list {
+    margin-top: 24px;
+}
+
+.citation {
+    background: #f7fafc;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    border-left: 4px solid #4299e1;
+}
+
+/* Session Modal */
+.session-content {
+    text-align: center;
+}
+
+.audio-player {
+    background: #f7fafc;
+    padding: 24px;
+    border-radius: 12px;
+    margin: 24px 0;
+}
+
+.play-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#play-pause-btn {
+    background: #4299e1;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s ease;
+}
+
+#play-pause-btn:hover {
+    background: #2c5282;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #4299e1;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.time {
+    font-size: 0.9rem;
+    color: #718096;
+    min-width: 80px;
+}
+
+.session-instructions {
+    background: #e8f2ff;
+    padding: 24px;
+    border-radius: 12px;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
-    .hero {
-        padding: 60px 20px;
+    .content-wrapper {
+        padding: 0 24px;
     }
     
-    .hero h1 {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+        padding: 0 24px;
+    }
+    
+    .hero-text h1 {
         font-size: 2.5rem;
     }
     
@@ -254,32 +678,60 @@ footer p {
         font-size: 1.1rem;
     }
     
+    .video-container {
+        max-width: 100%;
+    }
+    
+    .video-container iframe {
+        height: 250px;
+    }
+    
     h2 {
         font-size: 2rem;
     }
     
     section {
-        padding: 40px 0;
+        padding: 60px 0;
     }
     
     .benefits-grid,
+    .explore-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    
+    
+    .heartfulness-ctas {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        padding: 24px;
+    }
+    
+    .play-controls {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
     .steps-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
     }
     
-    .benefit-card,
-    .step-card,
-    .explore-item {
-        padding: 20px;
+    .hero-text h1 {
+        font-size: 2rem;
     }
     
-    .heartfulness-quote {
-        font-size: 1.1rem;
-        padding: 20px;
-    }
-    
-    .intro-text {
-        font-size: 1.1rem;
+    .video-container iframe {
+        height: 200px;
     }
 }
