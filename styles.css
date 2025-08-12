@@ -266,7 +266,8 @@ h3 {
     color: #718096;
     margin-bottom: 8px;
     position: relative;
-    padding-left: 16px;
+    padding-left: 20px;
+    text-align: left;
 }
 
 .benefit-card li::before {
@@ -274,6 +275,9 @@ h3 {
     color: #4299e1;
     position: absolute;
     left: 0;
+    top: 0;
+    width: 16px;
+    text-align: center;
 }
 
 .card-back h4 {
