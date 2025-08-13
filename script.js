@@ -365,6 +365,73 @@ class MeditationSite {
         // Open the Heartspots trainer connection page
         window.open('https://heartfulness.org/global/heartspots', '_blank');
     }
+    
+    // Trainer Modal Functions
+    openTrainerModal() {
+        const modal = document.getElementById('trainer-modal');
+        modal.style.display = 'block';
+        setTimeout(() => {
+            modal.style.opacity = '1';
+        }, 10);
+    }
+    
+    closeTrainerModal() {
+        const modal = document.getElementById('trainer-modal');
+        modal.style.opacity = '0';
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+        
+        // Reset form
+        document.getElementById('trainer-contact-form').reset();
+        document.getElementById('form-success').style.display = 'none';
+        document.getElementById('trainer-contact-form').style.display = 'block';
+    }
+    
+    submitTrainerForm(event) {
+        event.preventDefault();
+        
+        const formData = new FormData(event.target);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+            experience: formData.get('experience'),
+            preferredTime: formData.get('preferred-time'),
+            message: formData.get('message'),
+            location: 'Jacksonville, FL',
+            timestamp: new Date().toISOString()
+        };
+        
+        // Show loading state
+        const submitBtn = event.target.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Connecting...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission (in real implementation, this would be sent to a server)
+        setTimeout(() => {
+            // Hide form, show success message
+            document.getElementById('trainer-contact-form').style.display = 'none';
+            document.getElementById('form-success').style.display = 'block';
+            
+            // Reset button
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            
+            // In a real implementation, you would:
+            // 1. Send this data to your backend
+            // 2. Have your backend forward to Jacksonville.fl@heartfulness.org
+            // 3. Store in a database for follow-up
+            console.log('Trainer contact request:', data);
+            
+            // Auto-close modal after showing success for 5 seconds
+            setTimeout(() => {
+                this.closeTrainerModal();
+            }, 5000);
+            
+        }, 2000);
+    }
 }
 
 // Global functions for HTML onclick handlers
@@ -397,6 +464,18 @@ function togglePlayPause() {
 
 function connectWithTrainer() {
     window.open('https://heartfulness.org/global/heartspots', '_blank');
+}
+
+function openTrainerForm() {
+    site.openTrainerModal();
+}
+
+function closeTrainerModal() {
+    site.closeTrainerModal();
+}
+
+function submitTrainerForm(event) {
+    site.submitTrainerForm(event);
 }
 
 // Initialize the site when DOM is loaded
